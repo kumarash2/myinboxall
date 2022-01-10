@@ -1,0 +1,57 @@
+<mvc:View
+    controllerName="zinboxall.controller.PRPreview"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+     xmlns:fb="sap.ui.comp.filterbar" xmlns:f="sap.f"
+     xmlns:l="sap.ui.layout"
+     xmlns:core="sap.ui.core"
+>
+	<!--<Shell>
+		<App>
+			<pages>-->
+				<Page id="page1" title="{i18n>title2}" showNavButton="true" navButtonPress="onBack1">
+                <headerContent>
+			<Text text="{i18n>Version}" class="cls-versiontext" />
+		</headerContent>
+					<content>
+                 <VBox visible="false" class="cls-vbox12 sapUiLargeMarginBottom" justifyContent="Center" alignItems="Center">
+							<SegmentedButton id="PRType"
+                            selectionChange="onSelectionChange">
+								<items>
+									<SegmentedButtonItem key="CreatePr" width="30%" text="Create PR"/>
+									<SegmentedButtonItem key="CreateMulPr" width="44%" text="Create Multiple Line PR"/>
+									<SegmentedButtonItem key="DispPr" width="44%" text="Display/Change PR"/>
+								</items>
+							</SegmentedButton>
+                           <Input visible="false" id="previewpage" />
+						</VBox>
+                        <core:Fragment fragmentName="zinboxall.Fragments.PR" type="XML"/>
+					
+				<!--<IconTabBar class="">
+				<items>
+					<IconTabFilter icon="sap-icon://request" iconColor="Positive" design="Vertical" key="PR_IT_01"  text="{i18n>PurReq}">
+						<core:Fragment fragmentName="zinboxall.Fragment.PR" type="XML"/>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>-->
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<Button icon="sap-icon://attachment" class="cls-attBtn" press="onAttachmentPress" id="arrLeft11222" text="" type="Unstyled"/>
+				<ToolbarSpacer visible="{device>/isNoPhone}"/>  
+                 <Button text="{i18n>Approve}" type="Accept" press=".onApprovalDialog" visible="{= ${PRPreviewModel>/flg} === 'A' }" />
+                <Button text="{i18n>Reject}" type="Reject" press=".onRejectDialog"  visible="{= ${PRPreviewModel>/flg} === 'A' }"/>
+				<Button id="prSave" icon="sap-icon://save" text="{i18n>Save}" type="Accept" press="onSubmit1" visible="{= ${PRPreviewModel>/flg} !== 'A' }" />
+				<Button id="prCancel" icon="sap-icon://sys-cancel" type="Emphasized" text="{i18n>Cancel}" press="onPRPrevCancel" visible="{= ${PRPreviewModel>/flg} !== 'A' }" />
+				<Button id="prSaveSubmit" icon="sap-icon://hr-approval" text="Save and Submit" type="Reject" visible="{= ${PRPreviewModel>/flg} !== 'A' }"  press="onSubmitPR"/>
+				<Button id="prSaveSubmit23" visible="{= ${PRPreviewModel>/flg} !== 'A' }"  text="Withdraw" type="Emphasized" press="onSubmitPR1"/>
+				<ToolbarSpacer visible="{device>/isNoPhone}"/>
+					<Button id="prSaveSubmit222" text="Update Quantity and Price"  type="Emphasized" visible="{= ${PRPreviewModel>/flg} !== 'A' }"  press="onQuanUpdate"/>
+			</OverflowToolbar>
+		</footer>
+				</Page>
+			<!--</pages>
+		</App>
+	</Shell>-->
+</mvc:View>

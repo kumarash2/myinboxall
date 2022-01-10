@@ -1,0 +1,94 @@
+_schema-version: "3.2"
+ID: zinboxall
+description: My Inbox
+version: 0.0.1
+modules:
+- name: zinboxall-dest-content
+  type: com.sap.application.content
+  requires:
+  - name: zinboxall-dest-srv
+    parameters:
+      content-target: true
+  - name: zinboxall-repo-host
+    parameters:
+      service-key:
+        name: zinboxall-repo-host-key
+  - name: zinboxall-uaa
+    parameters:
+      service-key:
+        name: zinboxall-uaa-key
+  parameters:
+    content:
+      subaccount:
+        destinations:
+        - Name: zinboxall_repo_host
+          ServiceInstanceName: zinboxall-html5-srv
+          ServiceKeyName: zinboxall-repo-host-key
+          sap.cloud.service: zinboxall
+        - Authentication: OAuth2UserTokenExchange
+          Name: zinboxall_uaa
+          ServiceInstanceName: zinboxall-xsuaa-srv
+          ServiceKeyName: zinboxall-uaa-key
+          sap.cloud.service: zinboxall
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: zinboxall-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: zinboxall-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - zinboxall.zip
+      name: zinboxall
+      target-path: resources/
+- name: zinboxall
+  type: html5
+  path: .
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: zinboxall-dest-srv
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: zinboxall-dest-srv
+    service-plan: lite
+- name: zinboxall-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: zinboxall-xsuaa-srv
+    service-plan: application
+- name: zinboxall-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: zinboxall-html5-srv
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true

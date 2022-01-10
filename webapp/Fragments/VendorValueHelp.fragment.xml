@@ -1,0 +1,64 @@
+<core:FragmentDefinition
+	xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:l="sap.ui.layout" 
+    xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Employee Number Search" resizable="true" draggable="true" contentWidth="70%">
+        <content>
+            <fb:FilterBar reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true" cd:id="idTableVHSVendor">
+			<fb:filterGroupItems>
+				<fb:FilterGroupItem groupName="LIFNR" name="A" label="Vendor Number" partOfCurrentVariant="true" visibleInFilterBar="true">
+					<fb:control>
+                        <Input />
+					</fb:control>
+				</fb:FilterGroupItem>
+				<fb:FilterGroupItem groupName="LAND1" name="B" label="Country"  visibleInFilterBar="true">
+					<fb:control>
+						<Input />
+					</fb:control>
+				</fb:FilterGroupItem>
+                	<fb:FilterGroupItem groupName="NAME1" name="C" label="Description" partOfCurrentVariant="true" visibleInFilterBar="true">
+					<fb:control>
+                        <Input />
+					</fb:control>
+				</fb:FilterGroupItem>
+				<fb:FilterGroupItem groupName="WAERS" name="D" label="Currency"  visibleInFilterBar="true">
+					<fb:control>
+						<Input />
+					</fb:control>
+				</fb:FilterGroupItem>
+
+			</fb:filterGroupItems>
+
+	    </fb:FilterBar>
+        <Table id="idTableVHSVendor" items="{valuehelp>/VandorSet}" growing="true" growingThreshold="100">
+            <columns>
+                <Column >
+                    <Label text="Vendor Number"/>
+                </Column>
+                <Column >
+                    <Label text="Country"/>
+                </Column>
+                 <Column >
+                    <Label text="Name"/>
+                </Column>
+                <Column >
+                    <Label text="Currency"/>
+                </Column>
+                
+            </columns>
+            <ColumnListItem type="Navigation" press="onValueHelpLineItemPress" cd:id="idPRVendor_LIFNR">
+                <cells >
+                    <Text text="{valuehelp>LIFNR}" />
+                    <Text text="{valuehelp>LAND1}" />
+                     <Text text="{valuehelp>NAME1}" />
+                    <Text text="{valuehelp>WAERS}" />
+                </cells>
+            </ColumnListItem>
+        </Table>
+        </content>
+	<beginButton>
+        <Button text="Cancel" press="OnCloseDialog" />
+        </beginButton>	
+	</Dialog>
+</core:FragmentDefinition>

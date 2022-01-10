@@ -1,0 +1,40 @@
+<mvc:View
+    controllerName="zinboxall.controller.DetailsView"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Shell id="shell">
+        <App id="app">
+            <pages>
+                <Page id="page" title="{i18n>title}">
+                    <content>
+                        <IconTabBar class="sapUiResponsiveContentPadding" selectedKey="PRApproval">
+            <items>
+				<IconTabFilter text="{i18n>PRAppTab}" key="PRApproval" visible="{= ${CMdl>/1} === 'Approval' || ${CMdl>/1} === 'AC'}">  
+                     <core:Fragment fragmentName="zinboxall.Fragments.PRApproval" type="XML"/>
+				</IconTabFilter>
+				<IconTabFilter text="{i18n>invoiceAppTab}" key="InvoiceApproval" visible="{= ${CMdl>/1} === 'Approval' || ${CMdl>/1} === 'AC'}">
+                <core:Fragment fragmentName="zinboxall.Fragments.InvoiceApproval" type="XML"/>
+                </IconTabFilter>
+				<IconTabFilter text="{i18n>creditApTab}" key="CreditApproval" visible="{= ${CMdl>/1} === 'Approval'  || ${CMdl>/1} === 'AC'}">
+                 <core:Fragment fragmentName="zinboxall.Fragments.CreditNoteApproval" type="XML"/>
+                </IconTabFilter>
+				<IconTabFilter text="{i18n>reqCodTab}" key="PRcode" visible="{= ${CMdl>/1} === 'Code' || ${CMdl>/1} === 'AC'}">
+                 <core:Fragment fragmentName="zinboxall.Fragments.PRCoding" type="XML"/>
+                </IconTabFilter>
+				<IconTabFilter text="{i18n>invoiceCodeTab}" key="InvoiceCode" visible="{= ${CMdl>/1} === 'Code' || ${CMdl>/1} === 'AC'}">
+                 <core:Fragment fragmentName="zinboxall.Fragments.Invoice" type="XML"/>
+                </IconTabFilter>
+				<IconTabFilter text="{i18n>creditNoteCodeTab}" key="creditCode" visible="{= ${CMdl>/1} === 'Code' || ${CMdl>/1} === 'AC'}">
+                 <core:Fragment fragmentName="zinboxall.Fragments.CreditNote" type="XML"/>
+                </IconTabFilter>
+                </items>
+			</IconTabBar>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>

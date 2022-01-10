@@ -1,0 +1,241 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified"
+	xmlns:core="sap.ui.core">
+	
+	<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="2.9" labelSpanS="12" emptySpanXL="0"
+		emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" adjustLabelSpan="false" singleContainerFullSize="false">
+		<f:content>
+			<Label id="PRFrag" text="PR No"/>
+			<Text text="{PRPreviewModel>/Banfn}"/>
+			<!--<Label text="Delivery Country"/>
+			<Text id="delcountry" text="{PRPreviewModel>/HdrToItemNav/results/0/Land1}" />-->
+			<Label text="Internal Header Note"/>
+			<Text text="{PRPreviewModel>/Text}"/>
+			<core:Title text=""/>
+			<Label text="PR Creation Date"/>
+            <Text text="{path:'PRPreviewModel>/Erfdate',type:'sap.ui.model.type.Date',formatOptions:{pattern:'dd.MM.yyyy'}}"
+			 />
+			
+			<Label text="PR Status"/>
+			<Text text="{PRPreviewModel>/Zestak}"/>
+			<core:Title text=""/>
+			<Label text="Vendor"/>
+			<Text class="cls-vendortext" text="{PRPreviewModel>/Elifn}-{PRPreviewModel>/Name1}"/>
+			<Label text="Total PR Amount"/>
+			<Text text="{PRPreviewModel>/Rlwrt} {PRPreviewModel>/Waers}"/>
+			
+		</f:content>
+	</f:SimpleForm>
+	<ScrollContainer horizontal="true">
+		<Table id="PRPreviewTable"  items="{PRPreviewModel>/HdrToItemNav/results}" mode="MultiSelect"  inset="false" class="cl_vendorComparisionTbl sapUiMediumMarginTop">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title text="{i18n>Item}"/>
+					<CheckBox id="chckbox" select="onCodingSelect" class="sapUiMediumMarginBegin" text="View Coding Details"/>
+					<ToolbarSpacer/>
+				
+					<Button id="Addpr" icon="sap-icon://add" text="{i18n>Add}" press="onPRCodingDetail" visible="true" type="Reject"/>
+					<Button id="editpr" icon="sap-icon://edit" text="Edit" press="onPREdit"  visible="true" type="Reject"/>
+					<Button id="delpr" icon="sap-icon://delete" text="Delete" press="onPRLineDelete" visible="true"  type="Reject"/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<header>
+						<Text class="cls-white" text="Sr No"/>
+					</header>
+				</Column>
+				<Column>
+					<header>
+						<Text class="cls-white" text="Coding"/>
+					</header>
+				</Column>
+			
+				<Column>
+					<header>
+						<Text class="cls-white" text="Item Description"/>
+					</header>
+				</Column>
+			
+             <Column>
+              <header>
+              <Text text="Item Long desc" /> 
+              </header> 
+			</Column> 
+
+		<Column>
+					<header>
+						<Text  class="cls-white" text="Quantity"/>
+					</header>
+				</Column>
+				<Column>
+					<header>
+						<Text class="cls-white" text="UOM"/>
+					</header>
+				</Column>
+					<Column>
+					<header>
+						<Text class="cls-white" text="Unit Price"/>
+					</header>
+				</Column>
+					<Column>
+					<header>
+						<Text class="cls-white" text="Net Item Value"/>
+					</header>
+				</Column>
+				<Column>
+					<header>
+						<Text class="cls-white" text="Delivery Date"/>
+					</header>
+				</Column>
+                <Column>
+					<header>
+						<Text class="cls-white" text="Delivery Country"/>
+					</header>
+				</Column>
+				<Column>
+					<header>
+						<Text class="cls-white" text="Material Group"/>
+					</header>
+				</Column>
+				<Column>
+					<header>
+						<Text class="cls-white" text="Purchase Group"/>
+					</header>
+				</Column>
+					<Column>
+					<header>
+						<Text  class="cls-white" text="Approver"/>
+					</header>
+				</Column>
+				<Column>
+					<header>
+						<Text  class="cls-white" text="Status"/>
+					</header>
+				</Column>
+				<!--	<Column minScreenWidth="9200px" demandPopin="true">
+									<header>
+										<Text text=""/>
+									</header>
+								</Column>-->
+			</columns>
+			<items>
+				<ColumnListItem press="onDetailItemPress">
+					<cells>
+                    	<Text text="{path: 'PRPreviewModel>Bnfpo',
+                              formatter:'.formatter.formatSno'} "/>
+						<Text text="{path: 'PRPreviewModel>Knttp',
+                              formatter:'.formatter.getReqCodingText'} "/>
+                             
+						<Text text="{PRPreviewModel>Txz01}"/>
+                         <core:Icon
+			src="sap-icon://show"
+            press="onItemdesc"
+			/>
+						<Text text="{PRPreviewModel>Menge}"/>
+						<Text text="{PRPreviewModel>Meins} "/>
+						<Text text="{PRPreviewModel>Preis} "/>
+						<Text text="{PRPreviewModel>Gswrt}"/>
+                        <Text  text="{ 
+
+  path: 'PRPreviewModel>Lfdat',
+  formatter:'.formatter.formateDate'
+}"
+                       
+                      />
+						 <core:Icon
+			src="sap-icon://show"
+            press="onViewCountryDetail"
+			/>
+                        <!-- <Text text="{PRPreviewModel>Land1}"/>-->
+                  <Link text="{PRPreviewModel>Matkl}" press="onMatdesc"/>
+                  <Link text="{PRPreviewModel>Bkgrp}" press="onPurchdesc" />
+						<!--<Text text="{PRPreviewModel>Matkl}"/>
+						<Text text="{PRPreviewModel>Bkgrp} "/>-->
+						<Text text="{PRPreviewModel>invoice}"/>
+						<Text text="{PRPreviewModel>Zestak}"/>
+						
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+			<Table id="CodingDetails" items="{PRPreviewModel>/HdrToItemNav/results}" inset="false" class="sapUiMediumMarginTop cl_vendorComparisionTbl">
+						<headerToolbar>
+				<OverflowToolbar>
+					<Title text="Coding"/>
+				</OverflowToolbar>
+			</headerToolbar>	
+							<columns>
+									<Column>
+									<header>
+										<Text class="cls-white" text="Sr No"/>
+									</header>
+								</Column>
+							
+								<Column>
+									<header>
+										<Text class="cls-white" text="Cost Centre"/>
+									</header>
+								</Column>
+									<Column>
+									<header>
+										<Text class="cls-white" text="Order"/>
+									</header>
+								</Column>
+								<Column>
+									<header>
+										<Text class="cls-white" text="Employee No"/>
+									</header>
+								</Column>
+								<Column>
+									<header>
+										<Text class="cls-white" text="Profit Centre"/>
+									</header>
+								</Column>
+									<Column>
+									<header>
+										<Text class="cls-white" text="G/L Account"/>
+									</header>
+								</Column>
+									<Column>
+									<header>
+										<Text class="cls-white" text="ISBN"/>
+									</header>
+								</Column>
+									<Column>
+									<header>
+										<Text class="cls-white" text="Batch"/>
+									</header>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem  press="onDetailItemPress">
+									<cells>
+									<Text text="{path: 'PRPreviewModel>Bnfpo',
+                              formatter:'.formatter.formatSno'} "/>
+                                  <Link text="{PRPreviewModel>Kostl}" press="onKostldesc"/>
+                                  <Link text="{PRPreviewModel>Aufnr}" press="onAufnrdesc"/>
+                                  <Text text="{PRPreviewModel>Zzempno}" />
+                                  <Link text="{PRPreviewModel>Prctr}" press="onPrctrdesc"/>
+                                  <Link text="{PRPreviewModel>Sakto}" press="onSaktodesc"/>
+                                 <Link text="{PRPreviewModel>Isbn}" press="onIsbndesc"/>
+                                 <Text text="{PRPreviewModel>Batch} "/>
+					<!--<Text text="{PRPreviewModel>Kostl}"/>
+					<Text text="{PRPreviewModel>Aufnr}"/>
+					<Text text="{PRPreviewModel>Zzempno} "/>
+					<Text text="{PRPreviewModel>Prctr} "/>
+					<Text text="{PRPreviewModel>Sakto}"/>
+					<Text text="{PRPreviewModel>Isbn}"/>
+					<Text text="{PRPreviewModel>Batch} "/>-->
+				
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+	</ScrollContainer>
+	
+				
+							
+							
+					
+			
+</core:FragmentDefinition>

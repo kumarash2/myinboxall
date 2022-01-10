@@ -1,0 +1,52 @@
+<mvc:View
+    controllerName="zinboxall.controller.InitialView"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+    <Shell id="shell">
+        <App id="app">
+            <pages>
+                <Page id="page" title="{i18n>title}">
+                    <content>
+                        <HBox class="cls-hbox">	
+							<GenericTile cd:key="PRApproval" header="Approve Purchase Requisition" press="press" class="sapUiMediumMargin sapUiTinyMarginTop">
+								<TileContent footer="Pending for Approval">
+									<NumericContent value="5" icon="sap-icon://request"/>
+								</TileContent>
+							</GenericTile>
+							<GenericTile cd:key="InvoiceApproval" header="Approve Invoice" press="press" class="sapUiMediumMargin sapUiTinyMarginTop">
+								<TileContent footer="Pending for Approval">
+									<NumericContent value="12" icon="sap-icon://sales-quote"/>
+								</TileContent>
+							</GenericTile>
+							<GenericTile cd:key="PRApproval" header="Approve Credit Note" press="press" class="sapUiMediumMargin sapUiTinyMarginTop">
+								<TileContent footer="Pending for Approval">
+									<NumericContent value="15" icon="sap-icon://sales-order"/>
+								</TileContent>
+							</GenericTile>
+                            </HBox>
+                            <HBox class="cls-hbox">	
+							<GenericTile cd:key="PRCoding" header="Requisition Coding" press="press" class="sapUiMediumMargin sapUiTinyMarginTop">
+								<TileContent footer="Pending for Coding">
+									<NumericContent value="7" icon="sap-icon://request"/>
+								</TileContent>
+							</GenericTile>
+							<GenericTile header="Invoice Coding" press="press" class="sapUiMediumMargin sapUiTinyMarginTop">
+								<TileContent footer="Pending for Coding">
+									<NumericContent value="14" icon="sap-icon://request"/>
+								</TileContent>
+							</GenericTile>
+							<GenericTile header="Credit Note Coding" press="press" class="sapUiMediumMargin sapUiTinyMarginTop">
+								<TileContent footer="Pending for Coding">
+									<NumericContent value="21" icon="sap-icon://request"/>
+								</TileContent>
+							</GenericTile>
+                             </HBox>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>

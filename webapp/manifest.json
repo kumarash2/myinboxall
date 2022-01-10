@@ -1,0 +1,178 @@
+{
+    "_version": "1.32.0",
+    "sap.app": {
+        "id": "zinboxall",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZP2P_PRAPP_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ValueHelp": {
+                "uri": "/sap/opu/odata/sap/ZP2P_SHELP_SRV",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "Attachment": {
+                "uri": "/sap/opu/odata/sap/ZP2P_ATTACHMENT_SRV",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "zinboxall-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "zinbox",
+                    "action": "AllApprove",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": "sap-icon://inbox"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.96.0",
+            "libs": {
+                "sap.ui.core": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "zinboxall.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            },
+            "valuehelp": {
+                "dataSource": "ValueHelp",
+                "preload": true
+            },
+            "attachment": {
+                "dataSource": "Attachment",
+                "preload": true
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "zinboxall.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteInitialView",
+                    "pattern": "RouteInitialView",
+                    "target": [
+                        "TargetInitialView"
+                    ]
+                },
+                {
+                    "name": "RouteDetailView",
+                    "pattern": "DetailView/{key}",
+                    "target": ["TargetDetailView"]
+                  },
+                  {
+                    "name": "PRPreview",
+                    "pattern": "PRPreview/{PRPreview},{PRCopy}",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "PRPreview"
+                    ]
+                }
+               
+            ],
+            "targets": {
+                "TargetInitialView": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,                 
+                    "viewName": "InitialView"
+                },
+                "TargetDetailView": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,         
+                    "viewName": "DetailsView"
+                  },
+                  "PRPreview": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                     "clearControlAggregation": true,
+                    "viewName": "PRPreview",
+                    "viewId": "PRPreview"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "zinboxall.view.InitialView",
+            "type": "XML",
+            "async": true,
+            "id": "InitialView"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "zinboxall"
+    }
+}

@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Attachment" contentWidth="75%" contentHeight="75%">
+		<content>
+		<UploadCollection
+        id="UploadCollection"
+        multiple="false"
+instantUpload="false"
+change="uplchange"
+uploadUrl="{path:'AttUrl>/url',formatter:'.formatter.formatUploadUrl'}"
+uploadComplete = "onUploadComplete"
+beforeUploadStarts="onBeforeUploadStarts"
+items="{PRAttachModel1>/results}" noDataDescription="Drop files to upload or use the Add button">
+
+	<items>
+				<UploadCollectionItem
+					documentId="{PRAttachModel1>ObjectId}"
+					fileName="{PRAttachModel1>FileName}"
+					mimeType="{PRAttachModel1>Mimetype}"
+					url="{PRAttachModel1>ObjectId}"
+                    enableEdit="false"
+                    enableDelete="true"
+                    visibleDelete="true"
+                    press="onAttpress"
+                    visibleEdit="false"
+                    deletePress="onAttDelete"
+                    >
+					
+				</UploadCollectionItem>
+			</items>
+		</UploadCollection>
+		</content>
+			<beginButton>
+		<!--<Button press="onAttachSubmit" text="Submit"/>-->
+	</beginButton>
+    <endButton>
+    <Button press="onAttClose" text="Close"/>
+    </endButton>
+	</Dialog>
+
+</core:FragmentDefinition>

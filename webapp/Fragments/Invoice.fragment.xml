@@ -1,0 +1,73 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
+	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:fb="sap.ui.comp.filterbar">
+        <Toolbar class="styleForToolbar">
+            <ToolbarSpacer/>
+            <Title text="{i18n>InvoiceTitle}"/>
+            <ToolbarSpacer/>
+	    </Toolbar>
+		<fb:FilterBar reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true" cd:id="idTabInvoiceApp">
+			<fb:filterGroupItems>
+				<fb:FilterGroupItem groupName="InvoiceAppGN"  visibleInFilterBar="true" name="A"  label="{i18n>alldoc}">
+					<fb:control>
+						<Input  showValueHelp="true"/>
+					</fb:control>
+				</fb:FilterGroupItem>
+				<fb:FilterGroupItem groupName="InvoiceAppGN"  visibleInFilterBar="true" name="B" label="{i18n>grpBy}">
+					<fb:control>
+						<Input  showValueHelp="true"/>
+					</fb:control>
+				</fb:FilterGroupItem>
+				<fb:FilterGroupItem groupName="InvoiceAppGN"  visibleInFilterBar="true" name="C" label="{i18n>search}">
+					<fb:control>
+						<Input  showValueHelp="true"/>
+					</fb:control>
+				</fb:FilterGroupItem>
+			</fb:filterGroupItems>
+		</fb:FilterBar>
+		<Table  itemPress=".onINVAItemPress">
+        <headerToolbar>
+        <OverflowToolbar >
+        	<ToolbarSpacer/>
+            <Text text="{i18n>edit}"/>
+            <Text text="{i18n>export}" />
+            <Text text = "{i18n>refresh}" />
+        </OverflowToolbar>
+        </headerToolbar>
+			<columns>
+				<Column>
+					<Label text="{i18n>invoiceNumber}"/>
+				</Column>
+				<Column>
+					<Label text="{i18n>docType}"/>
+				</Column>
+				<Column>
+					<Label text="{i18n>vendorNo}"/>
+				</Column>
+				<Column>
+					<Label text="{i18n>vendorName}"/>
+				</Column>
+				<Column>
+					<Label text="{i18n>vendorInvoiceNo}" wrapping="true"/>
+				</Column>
+				<Column>
+					<Label text="{i18n>totalGrassAmt}" wrapping="true"/>
+				</Column>
+                <Column>
+					<Label text="{i18n>totalNetAmt}" wrapping="true"/>
+				</Column>
+				<Column>
+					<Label text="{i18n>totalTaxAmount}" wrapping="true"/>
+				</Column>
+			</columns>
+			<ColumnListItem type="Navigation">
+				<Link/>
+				<Text/>
+				<Text/>
+				<Text/>
+				<Text/>
+				<Text/>
+                <Text/>
+				<Text/>
+			</ColumnListItem>
+		</Table>	
+</core:FragmentDefinition>

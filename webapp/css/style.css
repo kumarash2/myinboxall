@@ -1,0 +1,12 @@
+/* Enter your custom styles here */
+.cls-hbox{
+	justify-content: center;
+    padding-top: 2rem;
+}
+.cls-hbox1{
+	justify-content: center !important;
+    padding-top: 1rem;
+}
+.sapMBarTitleAlignAuto .sapMBarPH {
+    justify-content: center!important;
+}
